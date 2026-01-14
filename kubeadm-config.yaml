@@ -1,0 +1,17 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: v1.29.15
+networking:
+  podSubnet: 192.168.0.0/16
+apiServer:
+  certSANs:
+  - "163.152.48.208"
+  extraArgs:
+    advertise-address: "163.152.48.208"
+etcd:
+  local:
+    extraArgs:
+      listen-peer-urls: "https://163.152.48.208:2382"
+      initial-advertise-peer-urls: "https://163.152.48.208:2382"
+      initial-cluster: "ubuntu=https://163.152.48.208:2382"
+      initial-cluster-state: "new"
